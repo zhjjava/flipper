@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema elementFormDefault="qualified"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+	<xs:element name="Menus">
+		<xs:complexType mixed="true">
+			<xs:sequence>
+				<xs:element maxOccurs="unbounded" minOccurs="1"
+					name="menu" type="MenuItem" />
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+
+	<xs:complexType name="MenuItem"  mixed="true">
+		<xs:sequence>
+			<xs:element maxOccurs="unbounded" minOccurs="0"
+				name="menu" type="MenuItem" />
+		</xs:sequence>
+		<xs:attribute name="id" type="xs:string" use="optional" />
+		<xs:attribute name="nameKey" type="xs:string" use="optional" />
+		<xs:attribute name="name" type="xs:string" use="optional" />
+		<xs:attribute name="link" type="xs:string" use="optional" />
+		<xs:attribute name="script" type="xs:string" use="optional" />
+		<xs:attribute name="target" type="xs:string" use="optional" />
+		<xs:attribute name="titleKey" type="xs:string" use="optional" />
+		<xs:attribute name="title" type="xs:string" use="optional" />
+		<xs:attribute name="operationCodes" type="xs:string" use="optional" />
+		<xs:attribute name="order" type="xs:int" use="optional"
+			default="0" />
+	</xs:complexType>
+
+</xs:schema>

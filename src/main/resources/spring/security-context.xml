@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+      
+	<!-- <global-method-security    mode="aspectj"     secured-annotations="enabled"    jsr250-annotations="disabled"    pre-post-annotations="enabled"/> -->
+
+	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled">
+     	<expression-handler ref="methodExpressionHandler"/> 
+ 	</global-method-security>
+
+  <!--      authentication-success-handler-ref="customSuccessHandler" -->
+ <!--     <http auto-config="true" >
+        <intercept-url pattern="/" access="permitAll" />
+        <intercept-url pattern="/config/delete**" access="hasRole('ROLE_ADMIN')" />
+        <form-login  login-page="/login.do"
+                     username-parameter="ssoId"
+                     password-parameter="password"               
+                     default-target-url="/index.do"
+                     authentication-failure-url="/error/403.do" />
+        <csrf/>
+    </http> -->
+  
+  
+ 	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<password-encoder hash="bcrypt" />
+			<jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select username,password,enabled from credentials where username=?"
+				authorities-by-username-query="select u1.username, u2.authority from credentials u1, authority u2 where u1.username = u2.username and u1.username =?" />
+		</authentication-provider>
+	</authentication-manager>
+
+<!--     <authentication-manager >
+        <authentication-provider user-service-ref="customUserDetailsService"/>
+    </authentication-manager>
+      
+    <beans:bean id="customUserDetailsService" class="com.websystique.springsecurity.service.CustomUserDetailsService" />
+    <beans:bean id="customSuccessHandler"     class="com.websystique.springsecurity.configuration.CustomSuccessHandler" /> -->
+     
+<!-- 	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+ 			<user-service>
+				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
+				<user name="guest" password="guest" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+ -->
+</beans:beans>
