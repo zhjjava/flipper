@@ -1,0 +1,97 @@
+.col-tb-12 {
+    width: 100%;
+  }
+  .col-tb-11 {
+    width: 91.66666666666666%;
+  }
+  .col-tb-10 {
+    width: 83.33333333333334%;
+  }
+  .col-tb-9 {
+    width: 75%;
+  }
+  .col-tb-8 {
+    width: 66.66666666666666%;
+  }
+  .col-tb-7 {
+    width: 58.333333333333336%;
+  }
+  .col-tb-6 {
+    width: 50%;
+  }
+  .col-tb-5 {
+    width: 41.66666666666667%;
+  }
+  .col-tb-4 {
+    width: 33.33333333333333%;
+  }
+  .col-tb-3 {
+    width: 25%;
+  }
+  .col-tb-2 {
+    width: 16.666666666666664%;
+  }
+  .col-tb-1 {
+    width: 8.333333333333332%;
+  }
+
+
+ .sl-mbp .modal-body p,.sl-mbp .modal-body span{
+ 	color:#134567;
+ }
+
+.sl-float{
+  float: left;
+}
+
+.sl-date-div{
+  display:inline;
+}
+.sl-form-btn{
+  text-align: right;
+}
+
+.sl-date-control{
+ padding-top:2px;
+}
+
+.sl-label-text{
+  display:block-inline;
+  height: 20px;
+  width:30px;
+}
+
+.sl_paginate{
+  float:right;
+  margin:10px;
+  margin-bottom: 0px;
+  margin-right: 15px;
+}
+.table tfoot th{
+  text-align: center;
+}
+.sl-btn-fdiv{
+  margin-bottom: 4px;
+}
+
+.actionMsgSpan{
+	color: #fff;
+	background: #1a4482;
+	height:14px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+}
+
+.actionErrorsSpan{
+	color: #fff;
+	background: #f00;
+	height:14px;
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	vertical-align: middle;
+}

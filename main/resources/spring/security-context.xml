@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.1.xsd
+    http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+      
+	<!-- <global-method-security    mode="aspectj"     secured-annotations="enabled"    jsr250-annotations="disabled"    pre-post-annotations="enabled"/> -->
+
+	<global-method-security secured-annotations="enabled" pre-post-annotations="enabled">
+     	<expression-handler ref="methodExpressionHandler"/> 
+ 	</global-method-security>
+
+  <!--      authentication-success-handler-ref="hrmsAuthenticationSuccessHandler" -->
+ <!--     <http auto-config="true" >
+        <intercept-url pattern="/" access="permitAll" />
+        <intercept-url pattern="/config/delete**" access="hasRole('ROLE_ADMIN')" />
+        <form-login  login-page="/login.do"
+                     username-parameter="ssoId"
+                     password-parameter="password"               
+                     default-target-url="/index.do"
+                     authentication-failure-url="/error/403.do" />
+        <csrf/>
+    </http> -->
+  
+      <http security="none" pattern="/js/**"/>
+      <http security="none" pattern="/css/**"/>
+      <http security="none" pattern="/images/**"/>
+      <http security="none" pattern="/plugins/**"/>
+      <http security="none" pattern="/layout/**"/>
+    <!-- enable use-expressions -->
+   <!--  <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/login.do" access="permitAll"/>
+        <intercept-url pattern="/signup.do" access="permitAll"/>
+        <intercept-url pattern="/resetpassword/**" access="permitAll"/>
+        <intercept-url pattern="/error/**" access="permitAll" />        
+        <intercept-url pattern="/layout/**" access="permitAll" />
+        <intercept-url pattern="/config/delete**" access="hasRole('ROLE_ADMIN')" />
+        <intercept-url pattern="/error/**" access="isAnonymous()" />
+
+        <intercept-url pattern="/**/*.do" access="isAuthenticated()" />	
+
+       
+        <intercept-url pattern="/" access="permitAll" />
+       
+        access denied page
+        <access-denied-handler error-page="/error/403.do" />
+        <form-login 
+            login-page="/login.do" 
+            default-target-url="/index.do"
+            authentication-success-handler-ref="hrmsAuthenticationSuccessHandler"
+            authentication-failure-url="/login.do?error" 
+            username-parameter="username"
+            password-parameter="password" />
+        <logout logout-success-url="/login.do?logout" />
+        enable csrf protection
+        <csrf />
+    </http> -->
+
+ <!--    <authentication-manager>
+        <authentication-provider user-service-ref="customUserDetailsService" >
+            <password-encoder hash="bcrypt" />
+        </authentication-provider>
+    </authentication-manager> -->
+        
+ 	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+			<password-encoder hash="bcrypt" />
+			<jdbc-user-service
+				data-source-ref="dataSource"
+				users-by-username-query="select username,password,enabled from credentials where username=?"
+				authorities-by-username-query="select u1.username, u2.authority from credentials u1, authority u2 where u1.username = u2.username and u1.username =?" />
+		</authentication-provider>
+	</authentication-manager>
+
+<!--     <authentication-manager >
+        <authentication-provider user-service-ref="customUserDetailsService"/>
+    </authentication-manager>
+      
+    <beans:bean id="customUserDetailsService" class="com.websystique.springsecurity.service.CustomUserDetailsService" />
+    <beans:bean id="customSuccessHandler"     class="com.websystique.springsecurity.configuration.CustomSuccessHandler" /> -->
+     
+<!-- 	<authentication-manager alias="authenticationManager">
+		<authentication-provider>
+ 			<user-service>
+				<user name="admin" password="admin" authorities="ROLE_ADMIN" />
+				<user name="guest" password="guest" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+ -->
+</beans:beans>

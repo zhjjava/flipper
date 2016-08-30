@@ -12,7 +12,7 @@
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 <head>
 <c:if test="${sessionSysUser == null}">
-	<c:redirect url="/${ctx}/login.do" />
+	<c:redirect url="login.do" />
 </c:if>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
